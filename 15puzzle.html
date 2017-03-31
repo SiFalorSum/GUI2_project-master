@@ -1,0 +1,86 @@
+<html>
+    <head>
+        <link rel="icon" type="image/png" href="15icon.png" />
+        <meta charset='utf-8'>
+        <link href="style.css" rel="stylesheet">
+        <title>the 15 puzzle</title>
+        <script src="script.js"></script>
+        <script>
+            docLoaded(fifteenPageLoaded);
+        </script>
+    </head>
+    
+    <body>
+        <div id="wrapper">
+        <header>
+            <div id="rubrik"><div>The </div><div id="rubnum">15</div><div> puzzle!</div></div>
+        </header>
+        
+        <main>
+            <p>Slide the boxes and place them in ascending order from the top left corner</p>
+            
+            <!-- Using <table> is perhaps not not optimal? Is <div> better for animations? -->
+            
+            <table id="gm">
+                <tr>
+                    <td id="bit11" class="col1 row1" draggable="false" ondragstart="drag(event)">
+                        <div class="noselect">1</div>
+                    </td>
+                    <td id="bit21" class="col2 row1" draggable="false" ondragstart="drag(event)">
+                        <div class="noselect">2</div>
+                    </td>
+                    <td id="bit31" class="col3 row1" draggable="false" ondragstart="drag(event)">
+                        <div class="noselect">3</div>
+                    </td>
+                    <td id="bit41" class="col4 row1" draggable="false" ondragstart="drag(event)">
+                        <div class="noselect">4</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td id="bit12" class="col1 row2" draggable="false" ondragstart="drag(event)">
+                        <div class="noselect">5</div>
+                    </td>
+                    <td id="bit22" class="col2 row2" draggable="false" ondragstart="drag(event)">
+                        <div class="noselect">6</div>
+                    </td>
+                    <td id="bit32" class="col3 row2" draggable="false" ondragstart="drag(event)">
+                        <div class="noselect">7</div>
+                    </td>
+                    <td id="bit42" class="col4 row2" draggable="false" ondragstart="drag(event)">
+                        <div class="noselect">8</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td id="bit13" class="col1 row3" draggable="false" ondragstart="drag(event)">
+                        <div class="noselect">9</div>
+                    </td>
+                    <td id="bit23" class="col2 row3" draggable="false" ondragstart="drag(event)">
+                        <div class="noselect">10</div>
+                    </td>
+                    <td id="bit33" class="col3 row3" draggable="false" ondragstart="drag(event)">
+                        <div class="noselect">11</div>
+                    </td>
+                    <td id="bit43" class="col4 row3" draggable="true" ondragstart="drag(event)">
+                        <div class="noselect">12</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td id="bit14" class="col1 row4" draggable="false" ondragstart="drag(event)">
+                        <div class="noselect">13</div>
+                    </td>
+                    <td id="bit24" class="col2 row4" draggable="false" ondragstart="drag(event)">
+                        <div class="noselect">14</div>
+                    </td>
+                    <td id="bit34" class="col3 row4" draggable="true" ondragstart="drag(event)">
+                        <div class="noselect">15</div>
+                    </td>
+                    <td id="bit44" class="col4 row4 current" draggable="false" ondragstart="drag(event)"
+                        ondrop="drop(event)" ondragover="allowDrop(event)">
+                    </td>
+                </tr>
+                <!--div class="current" ondrop="drop(event)" ondragover="allowDrop(event)"></div-->
+            </table>
+        </main>
+        </div>
+    </body>
+</html>

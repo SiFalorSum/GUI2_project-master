@@ -1,0 +1,91 @@
+@import 'https://fonts.googleapis.com/css?family=IM+Fell+English';
+@import 'https://fonts.googleapis.com/css?family=Sansita:400,400i';
+
+html, body {
+    height: auto;
+    width: auto;
+    background-color: #178;
+}
+
+#wrapper {
+    width: 600px;
+    height: auto;
+    background-color: #fff;
+    border: 15px solid #fe6;
+    border-radius: 40px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+header, main {
+    display: block;
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+#rubrik div {
+    font-family: 'Sansita', sans-serif;
+    font-style: italic;
+    font-size: 5em;
+    display: inline;
+    vertical-align: super;
+    color: #d00;
+	text-shadow: 3px 3px 3px #5d0;
+}
+
+#rubrik #rubnum {
+    font-style: normal;
+    font-size: 8em;
+    vertical-align: sub;
+    color: #f00;
+	text-shadow: 3px 3px 3px #5f0;
+}
+
+p {
+    font-family: 'Sansita', sans-serif;
+    font-style: normal;
+}
+
+table {
+    background-color: #ffa;
+    border: 15px solid #fa5;
+    border-radius: 25px;
+    
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 25px;
+}
+
+table div {
+    background-color: #f62;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    border: 5px solid #f93;
+    border-radius: 8px;
+    text-align: center;
+    font-family: 'IM Fell English', serif;
+    font-size: 2em;
+    /*position: relative;*/
+}
+
+.solved {
+    background-color: #cf7;
+    border-color: #9f3;
+}
+
+.solved div {
+    background-color: #5c0;
+    border-color: #7e1;
+}
+
+.noselect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
