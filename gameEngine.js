@@ -152,6 +152,7 @@ function isSolved(game) {
 	return true;
 }
 
+
 /* GAME(SIZEX, SIZEY, ENTRYROW, EXITROW, TILETYPEARRAY)
 Constructor for the Game object. Object parameters are
 "sizeX" (width), "sizeY" (height), "entryRow" (row index of
