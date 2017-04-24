@@ -1,91 +1,68 @@
-@import 'https://fonts.googleapis.com/css?family=IM+Fell+English';
-@import 'https://fonts.googleapis.com/css?family=Sansita:400,400i';
-
 html, body {
-    height: auto;
-    width: auto;
-    background-color: #178;
+    background-color: rgb(250,250,250);
+    margin:0px;
+    padding:0px;
+    height:100%;
+    width:100%;
+    font-family: 'Raleway', sans-serif;
+    overflow:hidden;
+}
+.main {
+    float:left;
+    width:75%;
+    height:100%;
+
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
-#wrapper {
-    width: 600px;
-    height: auto;
-    background-color: #fff;
-    border: 15px solid #fe6;
-    border-radius: 40px;
-    margin-left: auto;
-    margin-right: auto;
-}
 
-header, main {
+.displayed {
     display: block;
-    width: 500px;
+    background-color: #3e8e41;
     margin-left: auto;
     margin-right: auto;
-    text-align: center;
+    padding: 200px ;
+    background-color: #3e8e41;
+}
+.scroll{
+    overflow: scroll;
 }
 
-#rubrik div {
-    font-family: 'Sansita', sans-serif;
-    font-style: italic;
-    font-size: 5em;
-    display: inline;
-    vertical-align: super;
-    color: #d00;
-	text-shadow: 3px 3px 3px #5d0;
+.displayed:hover{
+    background-color: #0099cc;
 }
 
-#rubrik #rubnum {
-    font-style: normal;
-    font-size: 8em;
-    vertical-align: sub;
-    color: #f00;
-	text-shadow: 3px 3px 3px #5f0;
+.flags {
+    float:top;
+    transform: translate(520px, 40px);
+
 }
 
-p {
-    font-family: 'Sansita', sans-serif;
-    font-style: normal;
+.flags > img {
+    max-height: 30px;
+    border: 1px solid rgba(0,0,0,0.4);
+}
+.w3-container,.w3-panel{
+    padding:0.01em 16px
+}
+.w3-panel {
+    margin-top:16px;margin-bottom:16px
 }
 
-table {
-    background-color: #ffa;
-    border: 15px solid #fa5;
-    border-radius: 25px;
-    
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 25px;
+#slider { margin: 10px;
+    transform: translate(400px, -100px);
+    background-color: #f6931f;
 }
 
-table div {
-    background-color: #f62;
-    width: 50px;
-    height: 50px;
-    line-height: 50px;
-    border: 5px solid #f93;
-    border-radius: 8px;
-    text-align: center;
-    font-family: 'IM Fell English', serif;
-    font-size: 2em;
-    /*position: relative;*/
+
+#slider-vertical { margin: 10px;
+    transform: translate(500px, -100px);
+    background-color: #f6931f;
 }
 
-.solved {
-    background-color: #cf7;
-    border-color: #9f3;
-}
-
-.solved div {
-    background-color: #5c0;
-    border-color: #7e1;
-}
-
-.noselect {
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+.center {
+    margin: auto;
+    width: 50%;
 }
