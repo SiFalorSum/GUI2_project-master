@@ -16,10 +16,10 @@ Appends table row (<tr>) and table cell (<td>) elements to
 <table> element.
 
 Author: Nils Hansander
-Last modified: April 23, 2017
+Last modified: April 24, 2017
 */
 function generateTable(game) {
-	var tab = document.getElementsByTagName(“table”);
+	var tab = document.getElementsByTagName(“table”)[0];
 	for(y=0; y<game.sizeY; y++) {
 		var row = document.createElement(“tr”);
 		for(x=0; x<game.sizeX; x++) {
@@ -36,24 +36,62 @@ function generateTable(game) {
 Appends "tiles", ie <div> elements to table cells.
 
 Author: Nils Hansander
-Last modified: April 23, 2017
+Last modified: April 24, 2017
 */
 function generateTiles(game) {
 	for(y=0; y<game.sizeY; y++) {
 		var row = document.getElementsByClassName(“row” + y);
 		for(x=0; x<game.sizeX; x++) {
-			var el = row.getElementsByClassName(“col” + x);
+			var el = row.getElementsByClassName(“col” + x)[0];
             if(game.tileTypeArray[y*game.sixeX + x] !== "CC") {
                 var tile = document.createElement(“div”);
                 tile.className = “tile “ + 
                     game.tileTypeArray[y*game.sixeX + x];
+                
+                //tile.addEventListener("mousedown", dragTiles);
+                //tile.addEventListener("mouseup", dropTiles);
+                
                 el.appendChild(tile);
             } else {
-                el.className += "current";
+                el.className += " current";
             }
 		}
 	}
 }
+
+
+/*
+function dragTiles(event) {
+    var curr = document.getElementsByClassName("current")[0];
+    var el = event.target;
+    var isRow;
+    var offsetCoord;
+    if(curr.classList.item(0) == el.classList.item(0)) {
+        isRow = false;
+        offsetCoord = event.clientY;
+    } else if(curr.classList.item(1) == el.classList.item(1)) {
+        isRow = true;
+        offsetCoord = event.clientX;
+    } else {
+        return;
+    }
+    //Somehow make the elements between clicked element and "current"
+    //align horizontally or vertically with mouse, while remaining in
+    //line with their table row or column.
+    //
+    //el.firstChild.style.position = "absolute";
+    //el.firstChild.style.top = isRow ? "inherit":event.screenY-offsetCoord;
+    //el.firstChild.style.left = isRow ? event.screenX-offsetCoord:"inherit";
+    //
+}
+*/
+
+
+/*
+function dropTiles(event) {
+    
+}
+*/
 
 
 /* SCRAMBLE(REPEATS)
@@ -63,7 +101,7 @@ of random length.
 **Check isSolved for scrambled game! 
 
 Author: Nils Hansander
-Last modified: April 18, 2017
+Last modified: April 24, 2017
 */
 function scramble(repeats) {
     var pos;        //(int) nodelist indices: current and drop target
@@ -72,7 +110,7 @@ function scramble(repeats) {
     var moveDir;    //Affect index of target node to append "tile"
     //isRow determines if table row or column elements are processed
     var isRow = Math.random() < 0.5;
-    var curr = document.getElementsByClassName(“current”);
+    var curr = document.getElementsByClassName(“current”)[0];
     curr.classList.remove("current");
     
     for(i=0; i<repeats; i++) {
@@ -103,7 +141,7 @@ Returns "true" if the puzzle is solved. Also stores path of
 connected rail pieces in game.connectedTiles (Array).
 
 Author: Nils Hansander
-Last modified: April 23, 2017
+Last modified: April 24, 2017
 */
 function isSolved(game) {
 	var checkDir = {
@@ -112,7 +150,7 @@ function isSolved(game) {
 	//temporary div created to fill "current" empty cell.
     var temp = document.createElement(“div”);
 	temp.className = “tile CC”;
-	document.getElementsByClassName(“current”).appendChild(temp);
+	document.getElementsByClassName(“current”)[0].appendChild(temp);
     //retrieves all "tile" divs in a nodelist
 	var tiles = document.getElementsByClassName(“tile”);
 
@@ -148,7 +186,7 @@ function isSolved(game) {
 			y++;
 		}
 	} while( !(x == game.sizeX && y == game.exitRow) );
-	document.getElementsByClassName(“current”).removeChild(temp);
+	document.getElementsByClassName(“current”)[0].removeChild(temp);
 	return true;
 }
 
