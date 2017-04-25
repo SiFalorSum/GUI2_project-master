@@ -75,6 +75,12 @@ function dragTiles(event) {
     } else {
         return;
     }
+    var targ = document.getElementsByClassName(curr.classList.item(isRow ? 1:0))
+    var tiles;
+    for(var item of targ) {
+        if(item.firstChild)
+            tiles.push(item.firstChild);
+    }
     //Somehow make the elements between clicked element and "current"
     //align horizontally or vertically with mouse, while remaining in
     //line with their table row or column.
@@ -84,7 +90,7 @@ function dragTiles(event) {
     //el.firstChild.style.left = isRow ? event.screenX-offsetCoord:"inherit";
     //
 }
-*/
+
 
 
 /*
@@ -101,7 +107,7 @@ of random length.
 **Check isSolved for scrambled game! 
 
 Author: Nils Hansander
-Last modified: April 24, 2017
+Last modified: April 25, 2017
 */
 function scramble(repeats) {
     var pos;        //(int) nodelist indices: current and drop target
@@ -125,7 +131,10 @@ function scramble(repeats) {
         moveDir = pos[1] < pos[0] ? 0:1;
         pos[moveDir]++;
         targ = targ.slice.apply(this, pos.sort()); //!! "this" may refer to global object?
-        el2Move = targ.children;
+        for(var item of targ) {
+            if(item.firstChild)
+                el2Move.push(item.firstChild);
+        }
         
         for(j=1; j<targ.length; j++) {
             targ[j-moveDir].appendChild(el2Move[j-1]);
