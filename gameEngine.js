@@ -60,10 +60,78 @@ function generateTiles(game) {
 }
 
 
+/**
+var mousedownID = null;
+var onDropTarget = false;
+
+function mousedownfn(event) {
+    if(!mousedownID) {
+        var curList = document.getElementsByClassName("current")[0].classList;
+        var elList = event.currentTarget.parentElement.classList;
+        var pos = [];
+        var targ;
+        var dragObj = new Object();
+        
+        if(curList.item(0) == elList.item(0)) {
+            dragObj.isRow = false;
+            dragObj.targetClass = "row";
+            dragObj.offsetCoord = event.clientY;
+            pos[0] = parseInt(curList.item(1).charAt(3));
+            pos[1] = parseInt(elList.item(1).charAt(3));
+            targ = document.getElementsByClassName(curList.item(0));
+            
+        } else if(curList.item(1) == elList.item(1)) {
+            dragObj.isRow = true;
+            dragObj.targetClass = "col";
+            dragObj.offsetCoord = event.clientX;
+            pos[0] = parseInt(curList.item(0).charAt(3));
+            pos[1] = parseInt(elList.item(0).charAt(3));
+            targ = document.getElementsByClassName(curList.item(1));
+            
+        } else {
+            return;
+        }
+        dragObj.tileWidth = parseInt(event.currentTarget.style.width);
+        dragObj.moveDir = pos[1] < pos[0];
+        dragObj.targetClass += (pos[1] + (dragObj.moveDir ? 1:-1));
+        
+        pos[dragObj.moveDir ? 0:1]++;
+        targ = targ.slice.apply(this, pos.sort());
+        dragObj.tiles = [];
+        for(var item of targ) {
+            dragObj.tiles.push(item.firstChild);
+        }
+        
+        mousedownID = setInterval(function(){ dragTiles(dragObj, event); }, 40);
+    }
+}
+
+
+function dragTiles(obj, event) {
+    if(this.isRow == true) {
+        for(var i=0; i<this.tiles.length; i++) {
+            this.tiles[i].style.position = "absolute";
+            this.tiles[i].style.top = "inherit";
+            //var num = parseInt(item.parentElement.classList.item(1).charAt(3));
+            this.tiles[i].style.left = 
+                (event.screenX - this.offsetCoord + i*this.tileWidth*(this.moveDir ? 1:1-this.tiles.length)) + "px";
+        }
+    } else {
+        for(var i=0; i<this.tiles.length; i++) {
+            this.tiles[i].style.position = "absolute";
+            this.tiles[i].style.left = "inherit";
+            //var num = parseInt(item.parentElement.classList.item(1).charAt(3));
+            this.tiles[i].style.top = 
+                (event.screenY - this.offsetCoord + i*this.tileWidth*(this.moveDir ? 1:1-this.tiles.length)) + "px";
+        }
+    }
+}
+
 /*
 function dragTiles(event) {
     var curr = document.getElementsByClassName("current")[0];
-    var el = event.target;
+    var el = event.currentTarget.parentElement;
+    var tileWidth = parseInt(el.style.width);
     var isRow;
     var offsetCoord;
     if(curr.classList.item(0) == el.classList.item(0)) {
@@ -75,12 +143,20 @@ function dragTiles(event) {
     } else {
         return;
     }
-    var targ = document.getElementsByClassName(curr.classList.item(isRow ? 1:0))
+    var pos[0] = parseInt(curr.classList.item(isRow ? 0:1).charAt(3));
+    pos[1] = parseInt(event.currentTarget.parentElement.classList.item(isRow ? 0:1).charAt(3));
+    var moveDir = pos[1] < pos[0];
+    pos[moveDir ? 0:1]++;
+    var targetClass = isRow ? "row":"col";
+    targetClass += (pos[1] + (moveDir ? -1:1));
+    var targ = document.getElementsByClassName(curr.classList.item(isRow ? 1:0));
+    targ = targ.slice.apply(this, pos.sort());
     var tiles;
     for(var item of targ) {
-        if(item.firstChild)
+        //if(item.firstChild) //unnecessary?
             tiles.push(item.firstChild);
     }
+    
     //Somehow make the elements between clicked element and "current"
     //align horizontally or vertically with mouse, while remaining in
     //line with their table row or column.
@@ -89,6 +165,23 @@ function dragTiles(event) {
     //el.firstChild.style.top = isRow ? "inherit":event.screenY-offsetCoord;
     //el.firstChild.style.left = isRow ? event.screenX-offsetCoord:"inherit";
     //
+    if(isRow == true) {
+        for(var i=0; i<tiles.length; i++) {
+            tiles[i].style.position = "absolute";
+            tiles[i].style.top = "inherit";
+            //var num = parseInt(item.parentElement.classList.item(1).charAt(3));
+            tiles[i].style.left = 
+                (event.screenX - offsetCoord + i*tileWidth*(moveDir ? 1:1-tiles.length)) + "px";
+        }
+    } else {
+        for(var i=0; i<tiles.length; i++) {
+            tiles[i].style.position = "absolute";
+            tiles[i].style.left = "inherit";
+            //var num = parseInt(item.parentElement.classList.item(1).charAt(3));
+            tiles[i].style.top = 
+                (event.screenY - offsetCoord + i*tileWidth*(moveDir ? 1:1-tiles.length)) + "px";
+        }
+    }
 }
 
 
