@@ -1,0 +1,366 @@
+
+
+#gameCanvas canvas {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}
+#btnSound {
+    display: block;
+    position: absolute;
+    right: 30px;
+    top: 30px;
+    width: 52px;
+    height: 52px;
+    background:url("images/icon.png") -331px -132px;
+}
+
+#sound{
+    display: block;
+    position: absolute;
+    right: 30px;
+    top: 30px;
+    width: 52px;
+    height: 52px;
+    background: url("images/icon.png")-331px -132px;
+}
+
+#audioplay{
+    display: block;
+    position: absolute;
+    right: 90px;
+    top: 30px;
+    width: 52px;
+    height: 52px;
+    background: url("images/icon.png")-331px -78px;
+}
+#btnHelp {
+    display: block;
+    position: absolute;
+    right: 200px;
+    top: 300px;
+    width: 180px;
+    height: 70px;
+    background: url("images/icon.png") -12px -620px;
+}
+#btnHelp:hover {
+    background:url("images/icon.png") -191px -620px;
+}
+#btnAboutMe {
+    display: block;
+    position: absolute;
+    right: 200px;
+    top: 400px;
+    width: 180px;
+    height: 70px;
+    background:url("images/icon.png") -14px -835px;
+}
+#btnAboutMe:hover {
+    background:url("images/icon.png") -194px -835px;
+}
+
+#HelpDiv{
+    display:none;
+    position:absolute;
+    left:5px;
+    top:20px;
+}
+
+#audiostop {
+    display: block;
+    position: absolute;
+    right: 30px;
+    top: 30px;
+    width: 52px;
+    height: 52px;
+    background:url("images/icon.png") -331px -132px;
+}
+
+#btnPlay {
+    display: block;
+    position: absolute;
+    right: 200px;
+    top: 205px;
+    width:180px;
+    height:70px;
+    background:url("images/icon.png") -12px -693px;
+}
+#btnPlay:hover {
+    background:url("images/icon.png") -192px -693px;
+}
+
+#gameBody {
+    display: none;
+}
+
+.button{
+    border:0px;
+}
+
+#level{
+    position:relative;
+    margin:50px auto;
+    width:750px;
+    height:550px;
+}
+#level .background {
+}
+#level .block {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 750px;
+    height: 550px;
+}
+
+#level1 {
+    display: block;
+    position: absolute;
+    left: 60px;
+    top: 80px;
+    width: 53px;
+    height: 53px;
+    background:url("images/level3.jpg") -19px -110px;
+    background-size: 1200%;
+}
+#level1.hove{
+    background-color: red;
+}
+#level2 {
+    display: block;
+    position: absolute;
+    left: 143px;
+    top: 80px;
+    width: 53px;
+    height: 53px;
+    background:url("images/level3.jpg") -79px -120px;
+    background-size: 1200%;
+}
+
+#level3 {
+     display: block;
+     position: absolute;
+     left: 226px;
+     top: 80px;
+     width: 53px;
+     height: 53px;
+     background:url("images/level3.jpg") -139px -120px;
+     background-size: 1200%;
+ }
+#level4 {
+    display: block;
+    position: absolute;
+    left: 309px;
+    top: 80px;
+    width: 53px;
+    height: 53px;
+    background:url("images/level3.jpg") -199px -120px;
+    background-size: 1200%;
+}
+#level5 {
+    display: block;
+    position: absolute;
+    left: 392px;
+    top: 80px;
+    width: 53px;
+    height: 53px;
+    background:url("images/level3.jpg") -260px -120px;
+    background-size: 1200%;
+}
+#level6 {
+    display: block;
+    position: absolute;
+    left: 475px;
+    top: 80px;
+    width: 53px;
+    height: 53px;
+    background:url("images/level3.jpg") -320px -120px;
+    background-size: 1200%;
+}
+#level7 {
+    display: block;
+    position: absolute;
+    left: 558px;
+    top: 80px;
+    width: 53px;
+    height: 53px;
+    background:url("images/level3.jpg") -380px -120px;
+    background-size: 1200%;
+}
+#level8 {
+    display: block;
+    position: absolute;
+    left: 641px;
+    top: 80px;
+    width: 53px;
+    height: 53px;
+    background:url("images/level3.jpg") -440px -120px;
+    background-size: 1200%;
+}
+
+
+#level9 {
+    display: block;
+    position: absolute;
+    left: 60px;
+    top: 186px;
+    width: 53px;
+    height: 53px;
+    background:url("images/level3.jpg") -502px -120px;
+    background-size: 1200%;
+}
+#level10 {
+    display: block;
+    position: absolute;
+    left: 143px;
+    top: 186px;
+    width: 53px;
+    height: 53px;
+    background:url("images/level3.jpg") -562px -120px;
+    background-size: 1200%;
+}
+#level11 {
+    display: block;
+    position: absolute;
+    left: 226px;
+    top: 186px;
+    width: 53px;
+    height: 53px;
+    background:url("images/level3.jpg") -19px -201px;
+    background-size: 1200%;
+}
+#level12 {
+    display: block;
+    position: absolute;
+    left: 309px;
+    top: 186px;
+    width: 53px;
+    height: 53px;
+    background:url("images/level3.jpg") -79px -201px;
+    background-size: 1200%;
+}
+#level13 {
+    display: block;
+    position: absolute;
+    left: 392px;
+    top: 186px;
+    width: 53px;
+    height: 53px;
+    background:url("images/level3.jpg") -139px -201px;
+    background-size: 1200%;
+}
+#level4 {
+    display: block;
+    position: absolute;
+    left: 475px;
+    top: 186px;
+    width: 53px;
+    height: 53px;
+    background:url("images/level3.jpg") -200px -201px;
+    background-size: 1200%;
+}
+#level15 {
+    display: block;
+    position: absolute;
+    left: 558px;
+    top: 186px;
+    width: 53px;
+    height: 53px;
+    background:url("images/level3.jpg") -260px -201px;
+    background-size: 1200%;
+}
+#level16 {
+    display: block;
+    position: absolute;
+    left: 641px;
+    top: 186px;
+    width: 53px;
+    height: 53px;
+    background:url("images/level3.jpg") -320px -203px;
+    background-size: 1200%;
+}
+#level17 {
+    display: block;
+    position: absolute;
+    left: 60px;
+    top: 289px;
+    width: 53px;
+    height: 53px;
+    background:url("images/level3.jpg") -380px -202px;
+    background-size: 1200%;
+}
+#level18 {
+    display: block;
+    position: absolute;
+    left: 143px;
+    top: 289px;
+    width: 53px;
+    height: 53px;
+    background:url("images/level3.jpg") -440px -202px;
+    background-size: 1200%;
+}
+
+#level19 {
+    display: block;
+    position: absolute;
+    left: 226px;
+    top: 289px;
+    width: 53px;
+    height: 53px;
+    background:url("images/level3.jpg") -502px -201px;
+    background-size: 1200%;
+}
+#level20 {
+    display: block;
+    position: absolute;
+    left: 309px;
+    top: 289px;
+    width: 53px;
+    height: 53px;
+    background:url("images/level3.jpg") -562px -202px;
+    background-size: 1200%;
+}
+
+a:link, a:visited {
+    background-color: #f44336;
+    color: white;
+    padding: 14px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+a:hover {
+    background-color: green;
+}
+
+.flags {
+    background-postion: top right;
+    max-height: 30px;
+    float:right;
+    transform: translate(5px, 0px);
+}
+.flags > img {
+    max-height: 30px;
+    border: 1px solid rgba(0,0,0,0.4);
+}
+
+#en{
+    background:url("images/en.png")
+}
+
+
+#ch{
+    background:url("images/ch.png")
+}
+
+
+#sv{
+    background:url("images/sv.png")
+}
+#animationReel {
+    position: absolute;
+    z-index: -1;
+    top: 0px;
+    left: 0px;
+}
