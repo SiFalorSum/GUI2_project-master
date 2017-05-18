@@ -11,6 +11,26 @@ TODO: move tiles (custom drag-drop?), game score,
 game "master" function? et c...
 */
 
+
+/**/
+function docLoaded(fn) {
+    if (document.readyState !== 'loading'){
+		fn();
+	} else {
+		document.addEventListener('DOMContentLoaded', fn);
+	}
+}
+
+
+/**/
+function gameMaster() {
+    var game = getGame('easy', 0);
+    generateTable(game);
+    generateTiles(game);
+    //scramble(5);
+}
+
+
 /* GENERATETABLE(GAME)
 Appends table row (<tr>) and table cell (<td>) elements to
 <table> element.
@@ -19,12 +39,12 @@ Author: Nils Hansander
 Last modified: April 24, 2017
 */
 function generateTable(game) {
-	var tab = document.getElementsByTagName(“table”)[0];
-	for(y=0; y<game.sizeY; y++) {
-		var row = document.createElement(“tr”);
-		for(x=0; x<game.sizeX; x++) {
-			var el = document.createElement(“td”);
-			el.className = “col” + x + “ row” + y;
+	var tab = document.getElementsByTagName('table')[0];
+	for(var y=0; y<game.sizeY; y++) {
+		var row = document.createElement('tr');
+		for(var x=0; x<game.sizeX; x++) {
+			var el = document.createElement('td');
+			el.className = 'col' + x + ' row' + y;
 			row.appendChild(el);
 		}
 		tab.appendChild(row);
@@ -36,20 +56,22 @@ function generateTable(game) {
 Appends "tiles", ie <div> elements to table cells.
 
 Author: Nils Hansander
-Last modified: April 24, 2017
+Last modified: May 18, 2017
 */
 function generateTiles(game) {
 	for(y=0; y<game.sizeY; y++) {
-		var row = document.getElementsByClassName(“row” + y);
+		//var row = document.getElementsByClassName('row' + y);
 		for(x=0; x<game.sizeX; x++) {
-			var el = row.getElementsByClassName(“col” + x)[0];
-            if(game.tileTypeArray[y*game.sixeX + x] !== "CC") {
-                var tile = document.createElement(“div”);
-                tile.className = “tile “ + 
-                    game.tileTypeArray[y*game.sixeX + x];
+			//var el = row.getElementsByClassName('col' + x)[0];
+            
+            var el = document.getElementsByClassName('row' + y + ' col' + x)[0];
+            var tileType = game.tileTypeArray[y*game.sizeX + x];
+            if(tileType !== "CC") {
+                var tile = document.createElement('div');
+                tile.className = 'tile ' + tileType;
                 
-                //tile.addEventListener("mousedown", dragTiles);
-                //tile.addEventListener("mouseup", dropTiles);
+                tile.addEventListener("mousedown", mousedownfn);
+                tile.addEventListener("mouseup", dropTiles);
                 
                 el.appendChild(tile);
             } else {
@@ -60,7 +82,7 @@ function generateTiles(game) {
 }
 
 
-/**
+/**/
 var mousedownID = null;
 var onDropTarget = false;
 
@@ -70,7 +92,7 @@ function mousedownfn(event) {
         var elList = event.currentTarget.parentElement.classList;
         var pos = [];
         var targ;
-        var dragObj = new Object();
+        var dragObj = {};
         
         if(curList.item(0) == elList.item(0)) {
             dragObj.isRow = false;
@@ -91,16 +113,37 @@ function mousedownfn(event) {
         } else {
             return;
         }
-        dragObj.tileWidth = parseInt(event.currentTarget.style.width);
+        dragObj.tileWidth = 60;//parseInt(event.currentTarget.style.width); //not working ???
         dragObj.moveDir = pos[1] < pos[0];
         dragObj.targetClass += (pos[1] + (dragObj.moveDir ? 1:-1));
         
-        pos[dragObj.moveDir ? 0:1]++;
-        targ = targ.slice.apply(this, pos.sort());
+        pos[0] += dragObj.moveDir ? -1:1;
+        
+        var tmp = pos.sort();
+        targ = Array.prototype.slice.call(targ);
+        
+        targ = targ.slice(tmp[0], tmp[1]+1); //.apply(this, pos.sort());
         dragObj.tiles = [];
+        //alert('pos0: ' + tmp[0] + '\npos1: ' + tmp[1] +
+        //     '\ntarg.length: ' + targ.length);
+        
+        for(var i=0; i<targ.length; i++) {
+            //if(!targ[i].firstChild) alert('no child! (mousedown)\nLoop index: ' + i);
+            dragObj.tiles[i] = targ[i].firstChild;
+        }
+        
+        /**
         for(var item of targ) {
             dragObj.tiles.push(item.firstChild);
-        }
+        }//*/
+        
+        /*alert('curList: ' + curList[0] + ' ' + curList[1] + 
+             '\nelList: ' + elList[0] + ' ' + elList[1] +
+             '\noffsetCoord: ' + dragObj.offsetCoord + 
+             '\ntileWidth: ' + dragObj.tileWidth +
+              '\nmoveDir: ' + (dragObj.moveDir ? 1:-1) +
+             '\ntargetClass: ' + dragObj.targetClass + 
+             '\ntile: ' + dragObj.tiles[0].classList.item(1));*/
         
         mousedownID = setInterval(function(){ dragTiles(dragObj, event); }, 40);
     }
@@ -108,21 +151,21 @@ function mousedownfn(event) {
 
 
 function dragTiles(obj, event) {
-    if(this.isRow == true) {
-        for(var i=0; i<this.tiles.length; i++) {
-            this.tiles[i].style.position = "absolute";
-            this.tiles[i].style.top = "inherit";
+    if(obj.isRow == true) {
+        for(var i=0; i<obj.tiles.length; i++) {
+            obj.tiles[i].style.position = "absolute";//Probably not! <--
+            obj.tiles[i].style.top = "inherit";
             //var num = parseInt(item.parentElement.classList.item(1).charAt(3));
-            this.tiles[i].style.left = 
-                (event.screenX - this.offsetCoord + i*this.tileWidth*(this.moveDir ? 1:1-this.tiles.length)) + "px";
+            obj.tiles[i].style.left = 
+                (event.screenX - obj.offsetCoord + i*obj.tileWidth*(obj.moveDir ? 1:1-obj.tiles.length)) + "px";
         }
     } else {
-        for(var i=0; i<this.tiles.length; i++) {
-            this.tiles[i].style.position = "absolute";
-            this.tiles[i].style.left = "inherit";
+        for(var i=0; i<obj.tiles.length; i++) {
+            obj.tiles[i].style.position = "absolute";
+            obj.tiles[i].style.left = "inherit";
             //var num = parseInt(item.parentElement.classList.item(1).charAt(3));
-            this.tiles[i].style.top = 
-                (event.screenY - this.offsetCoord + i*this.tileWidth*(this.moveDir ? 1:1-this.tiles.length)) + "px";
+            obj.tiles[i].style.top = 
+                (event.screenY - obj.offsetCoord + i*obj.tileWidth*(obj.moveDir ? 1:1-obj.tiles.length)) + "px";
         }
     }
 }
@@ -186,11 +229,12 @@ function dragTiles(event) {
 
 
 
-/*
-function dropTiles(event) {
+/**/
+function dropTiles(obj, event) {
+    clearInterval(mousedownID);
     
 }
-*/
+//*/
 
 
 /* SCRAMBLE(REPEATS)
@@ -203,13 +247,13 @@ Author: Nils Hansander
 Last modified: April 25, 2017
 */
 function scramble(repeats) {
-    var pos;        //(int) nodelist indices: current and drop target
+    var pos = [];        //(int) nodelist indices: current and drop target
     var targ;       //Nodelist of table elements
-    var el2Move;    //Nodelist of "tile" div elements to move
+    var el2Move = [];    //Nodelist of "tile" div elements to move
     var moveDir;    //Affect index of target node to append "tile"
     //isRow determines if table row or column elements are processed
     var isRow = Math.random() < 0.5;
-    var curr = document.getElementsByClassName(“current”)[0];
+    var curr = document.getElementsByClassName('current')[0];
     curr.classList.remove("current");
     
     for(i=0; i<repeats; i++) {
@@ -222,12 +266,24 @@ function scramble(repeats) {
         curr = targ[pos[1]];
         
         moveDir = pos[1] < pos[0] ? 0:1;
-        pos[moveDir]++;
-        targ = targ.slice.apply(this, pos.sort()); //!! "this" may refer to global object?
+        //pos[moveDir]++;
+        pos[0] += pos[1] < pos[0] ? -1:1; //NYTT! Hjälpte inte...
+        
+        var tmp = pos.sort();
+        targ = Array.prototype.slice.call(targ);
+        
+        targ = targ.slice(tmp[0], tmp[1]); //.apply(this, pos.sort());
+        
+        for(var i=0; i<targ.length; i++) {
+            if(!targ[i].firstChild) alert('no child! (scramble)');
+            el2Move[i] = targ[i].firstChild;
+        }
+        
+        /**
         for(var item of targ) {
             if(item.firstChild)
                 el2Move.push(item.firstChild);
-        }
+        }//*/
         
         for(j=1; j<targ.length; j++) {
             targ[j-moveDir].appendChild(el2Move[j-1]);
@@ -243,22 +299,22 @@ Returns "true" if the puzzle is solved. Also stores path of
 connected rail pieces in game.connectedTiles (Array).
 
 Author: Nils Hansander
-Last modified: April 24, 2017
+Last modified: May 18, 2017
 */
 function isSolved(game) {
 	var checkDir = {
-		E = 'W', W = 'E', N = 'S', S = 'N'
+		E: 'W', W: 'E', N: 'S', S: 'N'
 	}
 	//temporary div created to fill "current" empty cell.
-    var temp = document.createElement(“div”);
-	temp.className = “tile CC”;
-	document.getElementsByClassName(“current”)[0].appendChild(temp);
+    var temp = document.createElement('div');
+	temp.className = 'tile CC';
+	document.getElementsByClassName('current')[0].appendChild(temp);
     //retrieves all "tile" divs in a nodelist
-	var tiles = document.getElementsByClassName(“tile”);
+	var tiles = document.getElementsByClassName('tile');
 
 	var x = 0;
 	var y = game.entryRow;
-	var lastDir = “E”;
+	var lastDir = 'E';
     game.connectedTiles = [];
     
 	do {
@@ -278,17 +334,17 @@ function isSolved(game) {
 				return false;
 			}
 		}
-		if(lastDir == “E”) {
+		if(lastDir == 'E') {
 			x++;
-		} else if(lastDir == “W”) {
+		} else if(lastDir == 'W') {
 			x--;
-		} else if(lastDir == “N”) {
+		} else if(lastDir == 'N') {
 			y--;
 		} else {
 			y++;
 		}
 	} while( !(x == game.sizeX && y == game.exitRow) );
-	document.getElementsByClassName(“current”)[0].removeChild(temp);
+	document.getElementsByClassName('current')[0].removeChild(temp);
 	return true;
 }
 
@@ -328,10 +384,10 @@ Last modified: April 23, 2017
 */
 function getGame(difficulty, levelIndex) {
     var easy1 = new Game(4, 4, 2, 1, [
-                "XX", "XX", "CC", "XX", 
-				"SE", "SW", "SE", "WE",
+                "XX", "XX", "SE", "XX", 
+				"SE", "SW", "CC", "WE",
 				"NW", "NS", "NE", "SW",
-				"XX", "NE", "WE", "NW"	]);
+				"XX", "NE", "WE", "NW"	]);//byt se och cc!
     var easy2 = new Game(6, 4, 2, 1, [
                 "", "", "", "", "", "",
 				"", "", "", "", "", "",
