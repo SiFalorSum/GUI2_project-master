@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>english link</title>
+</head>
+<body onload="startGame()">
+<canvas id="animationReel" ></canvas>
+<link rel="stylesheet" type="text/css" href="puzzlestyle.css">
+
+<div class="flags">
+    <img src="images/sv.png" id="sv" onclick="Swedsih()" style="cursor:pointer;">
+    <img src="images/en.png" id="en" onclick="English()"  style="cursor:pointer;">
+    <img src="images/ch.png" id="zh" onclick="Chinese()" style="cursor:pointer;">
+</div>
+<ul>
+    <li><a id="login" class="round green" href="">Log in<span class="round">Create an account if you have no account.</span></a></li>
+    <li><a id="help" class="round red" href="" >Tutorial<span class="round">Try it.</span></a></li>
+    <li><a id="levselection" class="round yellow" href="homeCanvas.html">Select Level<span class="round">Try it!</span></a></li>
+</ul>
+</body>
+<script src="loadmusic.js"></script>
+<script src="animation-home.js"></script>
+<script src="loadmusic.js"></script>
+<script src="gameEngine.js"></script>
+<script>
+    docLoaded(initAnimation);
+
+</script>
+<script src="Language.js"></script>
+</html>
