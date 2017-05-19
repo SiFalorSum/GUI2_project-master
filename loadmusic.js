@@ -5,7 +5,7 @@
 var mySound=[];
 
 function startGame() {
-    mySound = new sound("audio/welcome.mp3");
+    mySound = new sound("welcome.mp3");
     mySound.play();
     /*mySound.volume=1;
     mySound.loop=true;*/
@@ -21,10 +21,6 @@ function sound(src) {
         this.sound.play();
     }
 }
-
-function stopGame() {
-    mySound = new sound("music/play.mp3");
-    mysound.pause();
 
 }
 /*var audio = document.getElementById("bgMusic");
