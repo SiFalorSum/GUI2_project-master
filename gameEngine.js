@@ -299,7 +299,7 @@ Returns "true" if the puzzle is solved. Also stores path of
 connected rail pieces in game.connectedTiles (Array).
 
 Author: Nils Hansander
-Last modified: May 18, 2017
+Last modified: May 19, 2017
 */
 function isSolved(game) {
 	var checkDir = {
@@ -311,17 +311,18 @@ function isSolved(game) {
 	document.getElementsByClassName('current')[0].appendChild(temp);
     //retrieves all "tile" divs in a nodelist
 	var tiles = document.getElementsByClassName('tile');
-
+    
 	var x = 0;
 	var y = game.entryRow;
 	var lastDir = 'E';
     game.connectedTiles = [];
+    var trackDir;
     
 	do {
 		if(x<0 || x>game.sizeX-1 || y<0 || y>game.sizeY-1) {
 			return false;
 		} else {
-			trackDir = game.tileTypeArray[y*game.sizeX + x].classList.item(1);
+            trackDir = tiles[y*game.sizeX + x].classList.item(1);
             
 			if(trackDir.charAt(0) == checkDir[lastDir]) {
 				lastDir = trackDir.charAt(1);
