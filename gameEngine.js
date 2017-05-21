@@ -73,10 +73,11 @@ function gameMaster(gamelevel, levelindex) {
     var game = getGame('easy', 0);
     generateTable(game);
     generateTiles(game);
+    
     //Checks if scrambled game isn't solved by accident.
     var i = 0;
     do {
-        scramble(game, 10);
+        scramble(game, 1);
         if(i>2) {
             alert('Bad behavior of game in function scramble');
             return;
@@ -131,6 +132,13 @@ function gameMaster(gamelevel, levelindex) {
 }
 
 
+/**/
+function endGame(game) {
+    var img = document.getElementById("endgameGIF");
+    img.src = "end_game/3_Star_Complete.gif";
+}
+
+
 /* GENERATETABLE(GAME OBJECT "GAME")
 Appends table row (<tr>) and table cell (<td>) elements to
 <table> element.
@@ -175,7 +183,8 @@ function generateTiles(game) {
                     if(test) {
                         //stop timer here.
                         setTimeout(function() {
-                            alert("Game solved!");//add end game function.
+                            //alert("Game solved!");//add end game function.
+                            endGame(game);
                         }, 10);
                     }
                 });
