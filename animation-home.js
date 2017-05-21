@@ -32,7 +32,7 @@ function AnimationObj(imURI) {
             this.img[i] = new Image();
             this.img[i].src = this.imURI[i];
             
-            
+            this.img[0].crossOrigin="anonymous";
             
             var that = this;
             this.img[i].addEventListener('load', function() {
