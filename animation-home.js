@@ -224,15 +224,15 @@ function drawAnimation(anim) {
     anim[2].xOff = 5*(canvas.width-anim[2].xSize())/(7*anim[2].xSize());
     anim[5].xOff = 0.5*(canvas.width-anim[5].xSize())/anim[5].xSize();
     anim[6].xOff = anim[5].xOff;
-    /*
+    /**
     var moveTrain = 0;
     document.getElementById('').addEventListener('click', function() {
         moveTrain = 0.001;
     });
-    */
+    //*/
     
     var drawInterval = setInterval(function() {
-        /*
+        /**
         if(moveTrain > 0) {
             anim[5].xOff += moveTrain;
             anim[6].xOff = anim[5].xOff;
@@ -246,7 +246,7 @@ function drawAnimation(anim) {
                 clearInterval(drawInterval);
             }       
         }
-        */
+        //*/
         for(var i=0; i<anim.length; i++) {
             ctx.drawImage(anim[i].getImage(), anim[i].xOffset(steps[i]), 0);
         }
