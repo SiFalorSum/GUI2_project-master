@@ -5,6 +5,22 @@
     <title>Title</title>
 </head>
 <body>
+    <script>
+    function Swedish() {
+        document.getElementById("title").innerHTML = "Välj Nivå!";
+    }
+    function Chinese(){
+            document.getElementById("title").innerHTML = "选择等级!";
+    }
+        function English(){
+                document.getElementById("title").innerHTML = "Select Level!";
+            }
+</script>
+    <div class="flags">
+    <img src="sv.png" id="sv1" onclick="Swedish()" style="cursor:pointer;">
+    <img src="en.png" id="en1" onclick="English()"  style="cursor:pointer;">
+    <img src="ch.png" id="zh1" onclick="Chinese()" style="cursor:pointer;">
+</div>
     <div id="hidediv">
         <h1> welocme</h1>
         <audio hidden="true" autoplay loop controls>
