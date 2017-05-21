@@ -587,3 +587,16 @@ h1 {
     padding: 0;
 }
 /**/
+.btLevel1{
+    padding: 20px;
+    text-align: left;
+    text-anchor: auto;
+    border: 0px;
+    font-size: 30px;
+    color: blueviolet;
+    border-radius: 30%;
+}
+
+.btLevel1:hover{
+    background-color: #f6931f;
+}
