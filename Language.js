@@ -16,6 +16,6 @@ function Swedsih(){
 
 function English(){
     document.getElementById("login").innerHTML="log in";
-    document.getElementById("help").innerHTML="instruction";
+    document.getElementById("help").innerHTML="Tutorial";
     document.getElementById("levselection").innerHTML="level selection";
 }
