@@ -4,17 +4,19 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<body onload="startGame()">
-<h1> Welcome</h1>
+<body>
+<h1> welocme</h1>
+<audio hidden="true" autoplay loop controls>
+    <source src="bgmusic.mp3">
+</audio>
 <div class="container">
-<div style="overflow-x:auto;">
 <table id="level" align="center">
     <tr>
         <td id="l1" class="row1" >
-            <button id="b1" class= "btLevel" onclick="startGame()">level 1</button>
+            <button id="b1" class= "btLevel" onclick="gameMaster()">level 1</button>
         </td>
         <td id="l2" class="row1" >
-            <button id="b2" class="btLevel" onclick="getGame(easy,0)">level 2</button>
+            <button id="b2" class="btLevel" onclick="gameMaster2()">level 2</button>
         </td>
         <td id="l3" class="row1" >
             <button id="b3" class= "btLevel">level 3</button>
@@ -45,15 +47,14 @@
     </tr>
 </table>
 </div>
-</div>
 <image src="applaude.gif" width="30%" height="30%" align="bottom"></image>
 <image src="applaude.gif" width="30%" height="30%" align="bottom"></image>
 <image src="applaude.gif" width="30%" height="30%" align="bottom"></image>
 </body>
 <link rel="stylesheet" type="text/css" href="puzzlestyle.css">
-<script src="layer2.js"></script>
 <script src="loadmusic.js"></script>
 <script src="gameEngine.js"></script>
 <script src="animation-home.js"></script>
+<script src="displaybuttons.js"></script>
 <link rel="stylesheet" type="text/css" href="puzzlestyle.css">
 </html>
