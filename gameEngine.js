@@ -139,7 +139,7 @@ Author: Nils Hansander
 Last modified: April 24, 2017
 */
 function generateTable(game) {
-	var tab = document.getElementsByTagName('table')[0];
+	var tab = document.getElementById("gameTable");
 	for(var y=0; y<game.sizeY; y++) {
 		var row = document.createElement('tr');
 		for(var x=0; x<game.sizeX; x++) {
@@ -230,7 +230,7 @@ Last modified: May 21, 2017
 */
 function getImgSize(size) {
     if(!size) {
-        var size = document.getElementsByTagName("table")[0].rows.length;
+        var size = document.getElementById("gameTable").rows.length;
         if(size == 0) alert("*!* table column length = 0 *!*");
     }
         

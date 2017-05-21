@@ -31,6 +31,9 @@ function AnimationObj(imURI) {
         for(var i=0; i<this.imURI.length; i++) {
             this.img[i] = new Image();
             this.img[i].src = this.imURI[i];
+            
+            
+            
             var that = this;
             this.img[i].addEventListener('load', function() {
                 imgLoaded++;
