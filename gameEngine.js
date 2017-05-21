@@ -136,6 +136,9 @@ function gameMaster(gamelevel, levelindex) {
 function endGame(game) {
     var img = document.getElementById("endgameGIF");
     img.src = "end_game/3_Star_Complete.gif";
+    //var size = getImgSize(game.sizeY);
+    img.width = size*game.sizeX;
+    img.height = size*game.sizeY;
 }
 
 
