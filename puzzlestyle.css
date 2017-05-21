@@ -369,20 +369,6 @@ a:hover {
 }
 
 
-/*Added by Nils*/
-table {
-    border-collapse: collapse;
-    background-image: url("tiles/background_200.png");
-}
-
-table, th, td, .tile {
-    border: 0;
-    margin: 0;
-    padding: 0;
-}
-/**/
-
-
 tr, td {
     padding: 30px;
     text-align: left;
@@ -587,3 +573,17 @@ h1 {
     left:40%;
     top:30%;
 }
+
+
+/*Added by Nils*/
+#gameTable {
+    border-collapse: collapse;
+    background-image: url("tiles/background_200.png");
+}
+
+#gameTable tr, #gameTable td, .tile {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+/**/

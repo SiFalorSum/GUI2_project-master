@@ -175,7 +175,7 @@ function generateTiles(game) {
                     if(test) {
                         //stop timer here.
                         setTimeout(function() {
-                            alert("this works!");//add end game function.
+                            alert("Game solved!");//add end game function.
                         }, 10);
                     }
                 });
@@ -216,8 +216,8 @@ function tileStyle(tile, size) {
     var imSize = getImgSize(size);
     var str = "tiles/tile" + tileType + "_" + imSize + ".png";
     tile.style.backgroundImage = "url('" + str + "')";
-    tile.style.width = imSize;
-    tile.style.height = imSize;
+    tile.style.width = imSize + "px";
+    tile.style.height = imSize + "px";
     return tile;
 }
 
