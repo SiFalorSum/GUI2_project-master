@@ -136,7 +136,7 @@ function gameMaster(gamelevel, levelindex) {
 function endGame(game) {
     var img = document.getElementById("endgameGIF");
     img.src = "end_game/3_Star_Complete.gif";
-    //var size = getImgSize(game.sizeY);
+    var size = getImgSize(game.sizeY);
     img.width = size*game.sizeX;
     img.height = size*game.sizeY;
 }
@@ -463,6 +463,10 @@ Author: Nils Hansander
 Last modified: April 23, 2017
 */
 function getGame(difficulty, levelIndex) {
+    var tutorial = new Game(2, 2, 1, 0, [
+        "WE", "SE",
+        "CC", "NW"
+    ]);
     var easy1 = new Game(4, 4, 2, 1, [
                 "XX", "XX", "CC", "XX", 
 				"SE", "SW", "SE", "WE",
@@ -507,6 +511,7 @@ function getGame(difficulty, levelIndex) {
 				"", "", "", "", "", "", "", "", "", ""	]);
     
     var games = {
+        tutorial: [tutorial],
         easy: [easy1, easy2],
         medium: [medium1, medium2],
         hard: [hard1, hard2]
