@@ -32,8 +32,11 @@ function docLoaded(fn) {
 /*
 For testing purposes.
 */
-function gameMaster2() {
-    var game = getGame('easy', 0);
+function gameMaster2(gamelevel, levelindex) {
+    var el2hide = document.getElementById("hidediv");
+    el2hide.style.display = "none";
+    
+    var game = getGame(gamelevel, levelindex);
     generateTable(game);
     generateTiles(game);
     var i = 0;
@@ -63,7 +66,10 @@ Initiates and controls the game.
 Authors: Lejuan Hu, Nils Hansander
 Last modified: May 21, 2017
 */
-function gameMaster() {
+function gameMaster(gamelevel, levelindex) {
+    var el2hide = document.getElementById("hidediv");
+    el2hide.style.display = "none";
+    
     var game = getGame('easy', 0);
     generateTable(game);
     generateTiles(game);
