@@ -3,6 +3,8 @@ Functions related to the game mechanics.
 List of functions (UPDATE!):
 -docLoaded(fn)              W:working, F:finished
 -gameMaster()               W
+-endGame(game)
+-tutorialfn()
 -generateTable(game)        W, F
 -generateTiles(game)        W
 -tableStyle(tile)           W
@@ -133,12 +135,48 @@ function gameMaster(gamelevel, levelindex) {
 
 
 /**/
-function endGame(game) {
+function endGame(game, imSrc) {
     var img = document.getElementById("endgameGIF");
-    img.src = "end_game/3_Star_Complete.gif";
+    if(!imSrc) {
+        img.src = "end_game/3_Star_Complete.gif";
+    } else {
+        img.src = imSrc;
+    }
+    
     var size = getImgSize(game.sizeY);
     img.width = size*game.sizeX;
     img.height = size*game.sizeY;
+    
+    var resizeTimeout;
+    window.addEventListener("resize", function() {
+        if(!resizeTimeout) {
+            resizeTimeout = setTimeout(function() {
+                resizeTimeout = null;
+                size = getImgSize(game.sizeY);
+                img.width = size*game.sizeX;
+                img.height = size*game.sizeY;
+            }, 100);
+        }
+    });
+}
+
+
+/**/
+function tutorialfn() {
+    var game = getGame("tutorial", 0);
+    generateTable(game);
+    generateTiles(game);
+    var imSrc = "end_game/tutorial_cursor.gif"; //Change this!
+    endGame(game, imSrc);
+    var resizeTimeout;
+    window.addEventListener("resize", function() {
+        if(!resizeTimeout) {
+            resizeTimeout = setTimeout(function() {
+                resizeTimeout = null;
+                tableStyle();
+            }, 100);
+        }
+    });
 }
 
 
@@ -186,7 +224,7 @@ function generateTiles(game) {
                     if(test) {
                         //stop timer here.
                         setTimeout(function() {
-                            //alert("Game solved!");//add end game function.
+                            //alert("Game solved!");
                             endGame(game);
                         }, 10);
                     }

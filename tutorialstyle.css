@@ -1,0 +1,46 @@
+/*
+Can someone who knows CSS fix this?
+*/
+
+html, body {
+    height: auto;
+    width: auto;
+    background-color: #178;
+}
+
+main {
+    display: block;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+#tableWrap {
+    background-image: url("tiles/surrounding_grass.png");
+}
+
+#tableWrap div {
+    display: inline;
+    float: left;
+    height: auto;
+    width: auto;
+}
+
+#gameTable {
+    border-collapse: collapse;
+    background-image: url("tiles/background_200.png");
+}
+
+#gameTable tr, #gameTable td,.tile, #tableWrap div,
+#leftofTable, #rightofTable {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+#endgameGIF {
+    position: absolute;
+    z-index: 1;
+    margin: 0;
+}
