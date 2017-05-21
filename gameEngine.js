@@ -5,6 +5,9 @@ List of functions (UPDATE!):
 -gameMaster()               W
 -generateTable(game)        W, F
 -generateTiles(game)        W
+-tableStyle(tile)           W
+-tileStyle(tile, size)      W
+-getImgSize(size)           W
 -moveTiles(cl, isRow, pos)  W
 -clickfn(event)             W
 -scramble(game, repeats)    W, F
@@ -42,6 +45,15 @@ function gameMaster2() {
         }
         i++;
     } while(isSolved(game));
+    var resizeTimeout;
+    window.addEventListener("resize", function() {
+        if(!resizeTimeout) {
+            resizeTimeout = setTimeout(function() {
+                resizeTimeout = null;
+                tableStyle();
+            }, 100);
+        }
+    });
 }
 
 
@@ -49,12 +61,13 @@ function gameMaster2() {
 Initiates and controls the game.
 
 Authors: Lejuan Hu, Nils Hansander
-Last modified: May 20, 2017
+Last modified: May 21, 2017
 */
 function gameMaster() {
     var game = getGame('easy', 0);
     generateTable(game);
     generateTiles(game);
+    //Checks if scrambled game isn't solved by accident.
     var i = 0;
     do {
         scramble(game, 10);
@@ -64,6 +77,16 @@ function gameMaster() {
         }
         i++;
     } while(isSolved(game));
+    //Resizes game on resize event.
+    var resizeTimeout;
+    window.addEventListener("resize", function() {
+        if(!resizeTimeout) {
+            resizeTimeout = setTimeout(function() {
+                resizeTimeout = null;
+                tableStyle();
+            }, 100);
+        }
+    });
     
     //may need other lines to make game start. I am not sure which functions should be called. may be you can add some lines.
     var startM = addZero(d.getUTCMinutes());// get game start minute
@@ -127,7 +150,7 @@ function generateTable(game) {
 Appends "tiles", ie <div> elements to table cells.
 
 Author: Nils Hansander
-Last modified: May 19, 2017
+Last modified: May 21, 2017
 */
 function generateTiles(game) {
 	for(y=0; y<game.sizeY; y++) {
@@ -138,11 +161,18 @@ function generateTiles(game) {
             if(tileType !== "CC") {
                 var tile = document.createElement('div');
                 tile.className = 'tile ' + tileType;
-                /**/
-                var num = document.createTextNode("" + (y*game.sizeX + x));
-                tile.appendChild(num);
-                //*/
-                tile.addEventListener("click", clickfn);
+                tile = tileStyle( tile, game.sizeY );
+                
+                tile.addEventListener("click", function(event) {
+                    clickfn(event);
+                    var test = isSolved(game);
+                    if(test) {
+                        //stop timer here.
+                        setTimeout(function() {
+                            alert("this works!");//add end game function.
+                        }, 10);
+                    }
+                });
                 
                 el.appendChild(tile);
             } else {
@@ -150,6 +180,69 @@ function generateTiles(game) {
             }
 		}
 	}
+}
+
+
+/* TABLESTYLE()
+Called on resize event.
+
+Author: Nils Hansander
+Last modified: May 21, 2017
+*/
+function tableStyle() {
+    var tiles = document.getElementsByClassName("tile");
+    for(var i=0; i<tiles.length; i++) {
+        tiles[i] = tileStyle(tiles[i]);
+    }
+}
+
+
+/*TILESTYLE(ELEMENT "TILE", INT "SIZE")
+Sets size and appropriate background image depending on
+window size and "tiletype".
+Returns reference to "tile" div element.
+
+Author: Nils Hansander
+Last modified: May 21, 2017
+*/
+function tileStyle(tile, size) {
+    var tileType = tile.classList.item(1);
+    var imSize = getImgSize(size);
+    var str = "tiles/tile" + tileType + "_" + imSize + ".png";
+    tile.style.backgroundImage = "url('" + str + "')";
+    tile.style.width = imSize;
+    tile.style.height = imSize;
+    return tile;
+}
+
+
+/*GETIMGSIZE(INT "SIZE")
+Selects and returns image size that will make the game fit in the window.
+
+Author: Nils Hansander
+Last modified: May 21, 2017
+*/
+function getImgSize(size) {
+    if(!size) {
+        var size = document.getElementsByTagName("table")[0].rows.length;
+        if(size == 0) alert("*!* table column length = 0 *!*");
+    }
+        
+    if(document.fullscreenElement) {
+        var h = window.screen.height;
+    } else {
+        var h = window.innerHeight;
+    }
+    var maxSize = h / size;
+    var sizes = [100, 150, 200, 250];
+    var imSize = 100;
+    for(var i=0; i<sizes.length; i++) {
+        if( sizes[i] > maxSize ) {
+            break;
+        }
+        imSize = sizes[i];
+    }
+    return imSize;
 }
 
 
