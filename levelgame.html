@@ -5,31 +5,6 @@
     <title>Title</title>
 </head>
 <body>
-    <script>
-    function Swedish() {
-        document.getElementById("title").innerHTML = "Välj Nivå";
-        document.getElementById("stopaudio").innerHTML = "Välj Nivå";
-        document.getElementById("strtaudio").innerHTML = "Välj Nivå";
-        document.getElementById("volumeAdd").innerHTML = "Välj Nivå";
-        document.getElementById("volumeDecrease").innerHTML = "Välj Nivå";
-        
-    }
-    function Chinese(){
-            document.getElementById("title").innerHTML = "选择等级";
-             document.getElementById("stopaudio").innerHTML = "停止音乐;
-        document.getElementById("startaudio").innerHTML = "开始音乐";
-        document.getElementById("volumeAdd").innerHTML = "调大音量";
-        document.getElementById("volumeDecrease").innerHTML = "降低音量";
-        document.getElementById("volumeAdd").innerHTML = "调大音量";
-    }
-        function English(){
-                document.getElementById("title").innerHTML = "Select Level";
-            document.getElementById("startaudio").innerHTML = "Start Music";
-            document.getElementById("volumeDecrease").innerHTML = "Volume down";
-            document.getElementById("volumeAdd").innerHTML = "Volume Up";
-            document.getElementById("stopaudio").innerHTML = "Stop Music";
-            }
-</script>
     <div class="flags">
     <img src="sv.png" id="sv1" onclick="Swedish()" style="cursor:pointer;">
     <img src="en.png" id="en1" onclick="English()"  style="cursor:pointer;">
@@ -99,6 +74,7 @@
 <script src="loadmusic.js"></script>
 <script src="gameEngine.js"></script>
 <script src="animation-home.js"></script>
+<script src="ltranslate.js"></script>
 <script src="displaybuttons.js"></script>
 <link rel="stylesheet" type="text/css" href="puzzlestyle.css">
 </html>
