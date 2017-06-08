@@ -11,48 +11,49 @@
     <img src="ch.png" id="zh1" onclick="Chinese()" style="cursor:pointer;">
 </div>
     <div id="hidediv">
-        <h1> Selecte Level</h1>
+        <h1 id="title"> Selecte Level</h1>
         <audio hidden="true" autoplay loop controls>
             <source src="bgmusic.mp3">
         </audio>
-        <div class="container">
+        <div align="center" class="container">
             <table id="level" align="center">
                 <tr>
                     <td id="l1" class="row1" >
-                        <button id="b1" class= "btLevel" onclick="gameMaster('easy',0)">level 1</button>
+                        <button id="b1" class= "btLevel" onclick="gameMaster('easy',0)">1</button>
                     </td>
                     <td id="l2" class="row1" >
-                        <button id="b2" class="btLevel" onclick="gameMaster2()">level 2</button>
+                        <button id="b2" class="btLevel" onclick="gameMaster2()">2</button>
                     </td>
                     <td id="l3" class="row1" >
-                        <button id="b3" class= "btLevel">level 3</button>
+                        <button id="b3" class= "btLevel">3</button>
                     </td>
                     <td id="l4" class="row1" >
-                        <button id="b4" class= "btLevel">level 4</button>
+                        <button id="b4" class= "btLevel">4</button>
                     </td>
                     <td id="l5" class="row1" >
-                        <button id="b5" class= "btLevel">level 5</button>
+                        <button id="b5" class= "btLevel">5</button>
                     </td>
                 </tr>
                 <tr>
                     <td id="l6" class="row2" >
-                        <button id="b6" class= "btLevel">level 6</button>
+                        <button id="b6" class= "btLevel">6</button>
                     </td>
                     <td id="l7" class="row2" >
-                        <button id="b7" class= "btLevel">level 7</button>
+                        <button id="b7" class= "btLevel">7</button>
                     </td>
                     <td id="l8" class="row2" >
-                        <button id="b8" class= "btLevel">level 8</button>
+                        <button id="b8" class= "btLevel">8</button>
                     </td>
                     <td id="l9" class="row1" >
-                        <button id="b9" class= "btLevel">level 9</button>
+                        <button id="b9" class= "btLevel">9</button>
                     </td>
                     <td id="l10" class="row1" >
-                        <button id="b10" class= "btLevel">level 10</button>
+                        <button id="b10" class= "btLevel">10</button>
                     </td>
                 </tr>
             </table>
         </div>
+
     </div>
     <div>
         <!--canvas id="levelCompleteCanvas"></canvas-->
@@ -60,18 +61,19 @@
         <table id="gameTable">
         </table>
     </div>
-    <button class = "btLevel1" id="stopaudio" onclick="stopmusic()" >Stop Music </button>
-<button class = "btLevel1" id=" startaudio"  onclick="startmusic()">Start Music </button>
-<button class = "btLevel1" id="volumeAdd" onclick="volumeAdd()"> Volume UP</button>
-<button class = "btLevel1" id=" volumeDecrease" onclick="volumedecrease()"> Volume Down</button>  
-<a href="homepage.html" class="btLevel1">Homepage</a>
+    <container id="bContainer">
+    <button class = "btLevel" id="stopaudio" onclick="stopmusic()" >Stop Music </button>
+    <button class = "btLevel" id="startaudio"  onclick="startmusic()">Start Music </button>
+    <button class = "btLevel" id="volumeAdd" onclick="volumeAdd()"> Volume Up</button>
+    <button class = "btLevel" id="volumeDecrease" onclick="volumedecrease()"> Volume Down</button>
+    <a href="homepage.html" id ="backhome" class="btLevel1">Homepage</a>
+    </container>
 </body>
 <link rel="stylesheet" type="text/css" href="puzzlestyle.css">
 <script src="loadmusic.js"></script>
 <script src="gameEngine.js"></script>
 <script src="animation-home.js"></script>
-<script src="ltranslate.js"></script>
-<script src="displaybuttons.js"></script>
 <script src="audioController.js"></script>
+<script src="ltranslate.js"></script>
 <link rel="stylesheet" type="text/css" href="puzzlestyle.css">
 </html>
