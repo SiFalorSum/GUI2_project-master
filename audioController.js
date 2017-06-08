@@ -1,5 +1,5 @@
 /**
- * Created by lei on 21/05/17.
+ * background music play automatically when webpage loads
  */
 var audio = new Audio();
 audio.addEventListener("load", function() {
@@ -9,6 +9,9 @@ audio.src = "welcome.mp3";
 audio.autoplay = true;
 audio.volume = 0.5;
 
+/**
+ * all music elements stop when click on stop button. 
+ */
 function stopmusic(){
     var sounds = document.getElementsByTagName('audio');
     for(i=0; i<sounds.length; i++)
@@ -18,6 +21,9 @@ function stopmusic(){
      //   style.backgroundImage = "url(musicpause.png)"
 }
 
+/**
+ * all music elemenets start to play
+ */
 function startmusic(){
     var sounds = document.getElementsByTagName('audio');
     for(i=0; i<sounds.length; i++)
@@ -25,6 +31,9 @@ function startmusic(){
     audio.play();
 }
 
+/**
+ * volume inreases when click add-volume button
+ */
 function volumeAdd(){
     var volume = document.getElementsByTagName("audio")
         for (i =0; i<volume.length;i++){
@@ -32,6 +41,9 @@ function volumeAdd(){
         }
 }
 
+/**
+ * volume decreases when click decrease-volume button
+ */
 function volumedecrease(){
     var volume = document.getElementsByTagName("audio")
     for (i =0; i<volume.length;i++){
