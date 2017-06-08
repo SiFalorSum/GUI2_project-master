@@ -150,7 +150,7 @@ li {
     -o-transition: all .25s ease-in-out;
     -moz-transition: all .25s ease-in-out;
     transition: all .25s ease-in-out;
-    box-shadow: 2px 2px 7px rgba(0,0,0,.2);
+    box-shadow: 2px 2px 7px rgba(30,50,70,.2);
     border-radius: 300px;
     z-index: 1;
     border-width: 4px;
@@ -164,10 +164,10 @@ li {
     top: -15%;
     font-size: 33px;
     padding-top: 38px;
-    -webkit-box-shadow: 5px 5px 10px rgba(0,0,0,.3);
-    -o-box-shadow: 5px 5px 10px rgba(0,0,0,.3);
-    -moz-box-shadow: 5px 5px 10px rgba(0,0,0,.3);
-    box-shadow: 5px 5px 10px rgba(0,0,0,.3);
+    -webkit-box-shadow: 5px 5px 10px rgba(30,50,70,.3);
+    -o-box-shadow: 5px 5px 10px rgba(30,50,70,.3);
+    -moz-box-shadow: 5px 5px 10px rgba(30,50,70,.3);
+    box-shadow: 5px 5px 10px rgba(30,50,70,.3);
     z-index: 2;
     border-size: 10px;
     -webkit-transform: rotate(-360deg);
