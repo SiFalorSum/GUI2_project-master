@@ -10,9 +10,9 @@ function Chinese(){
     document.getElementById("ts").innerHTML="尝试";
 }
 
-function Swedsih(){
+function Swedish(){
    // document.getElementById("login").innerHTML="logga in";
-    document.getElementById("help").innerHTML="handledning";
+    document.getElementById("help").innerHTML="Så spelar du";
     document.getElementById("levselection").innerHTML="nivå";
     document.getElementById("th").innerHTML="försök";
     document.getElementById("ts").innerHTML="försök";

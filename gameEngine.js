@@ -7,6 +7,7 @@ List of functions (UPDATE!):
 -tutorialfn()
 -generateTable(game)        W, F
 -generateTiles(game)        W
+-generateEdge(game)
 -tableStyle(tile)           W
 -tileStyle(tile, size)      W
 -getImgSize(size)           W
@@ -75,11 +76,12 @@ function gameMaster(gamelevel, levelindex) {
     var game = getGame('easy', 0);
     generateTable(game);
     generateTiles(game);
+    generateEdge(game);
     
     //Checks if scrambled game isn't solved by accident.
     var i = 0;
     do {
-        scramble(game, 1);
+        scramble(game, 3);
         if(i>2) {
             alert('Bad behavior of game in function scramble');
             return;
@@ -166,7 +168,8 @@ function tutorialfn() {
     var game = getGame("tutorial", 0);
     generateTable(game);
     generateTiles(game);
-    var imSrc = "end_game/tutorial_cursor.gif"; //Change this!
+    generateEdge(game);
+    var imSrc = "end_game/tutorial_cursor.gif";
     endGame(game, imSrc);
     var resizeTimeout;
     window.addEventListener("resize", function() {
@@ -239,6 +242,91 @@ function generateTiles(game) {
 }
 
 
+/**/
+function generateEdge(game) {
+    var lft = document.getElementsByClassName("col0");
+    var rgt = document.getElementsByClassName("col" + (game.sizeX-1) );
+    for(var i=0; i<game.sizeY; i++) {
+        var prnt = lft[i].parentNode;
+        var ltd = document.createElement("td");
+        var rtd = document.createElement("td");
+        var ldiv = document.createElement("div");
+        var rdiv = document.createElement("div");
+        ltd.className = "colL";
+        rtd.className = "colR";
+        if(game.entryRow == i) {
+            ldiv.className = "fixedtile LE";
+        } else {
+            ldiv.className = "fixedtile LL";
+            if(i==0) {
+                var tmr = new Image();
+                tmr.src = "end_game/Timer_Animation.gif";
+                var imSize = getImgSize(game.sizeY);
+                tmr.width = imSize;
+                tmr.height = imSize;
+                ldiv.appendChild(tmr);
+                
+                var resizeTimeout;
+                window.addEventListener("resize", function() {
+                    if(!resizeTimeout) {
+                        resizeTimeout = setTimeout(function() {
+                            resizeTimeout = null;
+                            imSize = getImgSize(game.sizeY);
+                            tmr.width = imSize;
+                            tmr.height = imSize;
+                        }, 100);
+                    }
+                });
+            }
+        }
+        if(game.exitRow == i) {
+            rdiv.className = "fixedtile RE";
+        } else {
+            rdiv.className = "fixedtile RR";
+        }
+        ldiv = tileStyle(ldiv, game.sizeY);
+        rdiv = tileStyle(rdiv, game.sizeY);
+        ltd.appendChild(ldiv);
+        rtd.appendChild(rdiv);
+        prnt.insertBefore( ltd, lft[i] );
+        prnt.insertBefore( rtd, rgt[i].nextSibling );
+    }
+    
+    var toprow = document.createElement("tr");
+    var bottomrow = document.createElement("tr");
+    var tp = document.getElementsByClassName("row0")[0].parentElement;
+    var bt = document.getElementsByClassName("row" + (game.sizeY-1) )[0].parentElement;
+    for(var i=0; i<(game.sizeX+2); i++ ) {
+        var ttd = document.createElement("td");
+        var btd = document.createElement("td");
+        ttd.className = "toprow";
+        btd.className = "bottomrow";
+        var tdiv = document.createElement("div");
+        var bdiv = document.createElement("div");
+        if(i==0) {
+            tdiv.className = "fixedtile TL";
+            bdiv.className = "fixedtile BL";
+        } else if(i==game.sizeX+1) {
+            tdiv.className = "fixedtile TR";
+            bdiv.className = "fixedtile BR";
+        } else {
+            tdiv.className = "fixedtile TT";
+            bdiv.className = "fixedtile BB";
+        }
+        tdiv = tileStyle(tdiv, game.sizeY);
+        bdiv = tileStyle(bdiv, game.sizeY);
+        ttd.appendChild(tdiv);
+        btd.appendChild(bdiv);
+        toprow.appendChild(ttd);
+        bottomrow.appendChild(btd);
+    }
+    prnt = document.getElementById("gameTable");
+    prnt.insertBefore( toprow, tp );
+    prnt.insertBefore( bottomrow, bt.nextSibling );
+    
+}
+
+
 /* TABLESTYLE()
 Called on resize event.
 
@@ -246,7 +334,7 @@ Author: Nils Hansander
 Last modified: May 21, 2017
 */
 function tableStyle() {
-    var tiles = document.getElementsByClassName("tile");
+    var tiles = document.querySelectorAll('.tile, .fixedtile'); //non-live??
     for(var i=0; i<tiles.length; i++) {
         tiles[i] = tileStyle(tiles[i]);
     }
@@ -259,7 +347,7 @@ window size and "tiletype".
 Returns reference to "tile" div element.
 
 Author: Nils Hansander
-Last modified: May 21, 2017
+Last modified: May 23, 2017
 */
 function tileStyle(tile, size) {
     var tileType = tile.classList.item(1);
@@ -267,7 +355,12 @@ function tileStyle(tile, size) {
     var str = "tiles/tile" + tileType + "_" + imSize + ".png";
     tile.style.backgroundImage = "url('" + str + "')";
     tile.style.width = imSize + "px";
-    tile.style.height = imSize + "px";
+    
+    if(tileType.charAt(0) == "T" || tileType.charAt(0) == "B") {
+        tile.style.height = (imSize/5) + "px";
+    } else {
+        tile.style.height = imSize + "px";
+    }
     return tile;
 }
 
@@ -281,6 +374,7 @@ Last modified: May 21, 2017
 function getImgSize(size) {
     if(!size) {
         var size = document.getElementById("gameTable").rows.length;
+        size -= 2;
         if(size == 0) alert("*!* table column length = 0 *!*");
     }
         
