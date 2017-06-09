@@ -63,7 +63,7 @@ function gameMaster2(gamelevel, levelindex) {
 }
 
 
-/* GAMEMASTER()
+/* GAMEMASTER(GAME, INT "LEVELINDEX")
 Initiates and controls the game.
 
 Authors: Lejuan Hu, Nils Hansander
@@ -136,7 +136,12 @@ function gameMaster(gamelevel, levelindex) {
 }
 
 
-/**/
+/*ENDGAME(GAME, STRING "IMSRC")
+Adds a GIF when the puzzle is solved
+
+Author: Nils Hansander
+Last modified: May 23, 2017
+*/
 function endGame(game, imSrc) {
     var img = document.getElementById("endgameGIF");
     if(!imSrc) {
@@ -163,7 +168,12 @@ function endGame(game, imSrc) {
 }
 
 
-/**/
+/*TUTORIALFN()
+Creates the tutorial puzzle.
+
+Author: Nils Hansander
+Last modified: May 23, 2017
+*/
 function tutorialfn() {
     var game = getGame("tutorial", 0);
     generateTable(game);
@@ -242,7 +252,12 @@ function generateTiles(game) {
 }
 
 
-/**/
+/*GENERATEEDGE(GAME)
+Generates the border around the puzzle
+
+Author: Nils Hansander
+Last modified: May 23, 2017
+*/
 function generateEdge(game) {
     var lft = document.getElementsByClassName("col0");
     var rgt = document.getElementsByClassName("col" + (game.sizeX-1) );
